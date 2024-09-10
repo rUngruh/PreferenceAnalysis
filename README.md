@@ -29,3 +29,38 @@ Run the following scripts with the dataset argument (`ml` or `lfm`) in order to 
 
 1. Run `Experiment_1/create_user_profiles_in_batches.py` 
 2. Run `Experiment_1/analyze_subset.py` and `Experiment_1/analyze_user_profiles.py` in order to further analyze the user profiles.
+
+## Experiment 2:
+### Step1: Dataset Processing and Splitting
+Here, we select a subset of LFM-2b for our recommendation analysis, make an informed decision about the selection of the subset, and create a temporal split for validation and testing. 
+1. Run `Experiment_2/Preprocessing/filter_year.py` and select years that could be valid for the Experiment.
+2. Run `Experiment_2/Preprocessing/split_set.py`
+3. Analyze and compare subsets with `Experiment_2/Preprocessing/analyze_subset.py` and `Experiment_2/Preprocessing/compare_user_stats_to_filtered_set.py` in order to validate that the filtered sets for the training are in accordance with the original data from Exp1.
+
+Now, we utilize the selected subset for training and evaluating using Elliot.
+
+
+### Step2: Preparing Elliot
+- Create conda environment
+```
+conda create --yes --name elliot-env python=3.8
+conda activate elliot-env
+cd Experiment_2 
+git clone https://github.com//sisinflab/elliot.git && cd elliot
+pip install --upgrade pip
+pip install -e . --verbose
+```
+
+In our case, we had to downgrade protobuf
+```
+pip install protobuf==3.20.3
+```
+
+Add the train, validation, and test splits from the previous steps to the data directory in elliot.
+1. From `processed/lfm_with_lfm1b_allmusic_tags/elliot_data` add `train_child_2011`, `validation_child_2011`, and `test_child_2011` to `Experiment_2/elliot/data/lfm_child_2011` as `train.tsv`, `validation.tsv`, and `test.tsv`, respectively.
+2. From `processed/lfm_with_lfm1b_allmusic_tags/elliot_data` add `train_2011`, `validation_2011`, and `test_2011` to `Experiment_2/elliot/data/lfm_2011` as `train.tsv`, `validation.tsv`, and `test.tsv`, respectively.
+
+Finally, add the config_files (`Experiment_2/config_files`) to `Experiment_2/elliot/config_files`
+
+
+### Step3: Running Experiments using Elliot

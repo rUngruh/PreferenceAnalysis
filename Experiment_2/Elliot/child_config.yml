@@ -1,0 +1,48 @@
+experiment:
+  dataset: movielens_1m
+  data_config:
+    strategy: fixed
+    train_path: ../data/lfm_child_2012/train.tsv
+    test_path: ../data/lfm_child_2012/test.tsv
+    validation_path: ../data/lfm_child_2012/validation.tsv
+  # prefiltering:
+  #   - strategy: global_threshold
+  #     threshold: 4
+  #   - strategy: iterative_k_core
+  #     core: 10
+  binarize: True
+  top_k: 200
+  evaluation:
+    cutoffs: [5, 10]
+    simple_metrics: [nDCG, Recall, MAP, MRR,ItemCoverage,Gini]
+  gpu: 2
+  path_output_rec_result: ../results/lfm_child_2012/recommendations
+  path_output_rec_performance: ../results/lfm_child_2012/performance
+  external_models_path: ../external/models/__init__.py
+  models:
+    Random:
+      meta:
+        save_recs: True
+    external.MostPop:
+      meta:
+        verbose: True
+        save_recs: True
+    UserKNN: 
+      meta:
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        save_recs: True
+        verbose: True
+      neighbors: [ uniform, 5, 1000 ]
+      similarity: [cosine, jaccard]
+    MF2020: 
+      meta:
+        hyper_max_evals: 20
+        hyper_opt_alg: tpe
+        verbose: True
+        save_recs: True
+      epochs: [quniform, 30, 100, 1]
+      factors: [8, 16, 32, 64, 128, 256]
+      lr: [loguniform, -11.512925464970229, 0]
+      reg: [loguniform, -11.512925464970229, -2.30258509299]
+      m: [4,6,8]

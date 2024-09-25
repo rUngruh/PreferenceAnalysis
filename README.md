@@ -57,10 +57,26 @@ pip install protobuf==3.20.3
 ```
 
 Add the train, validation, and test splits from the previous steps to the data directory in elliot.
-1. From `processed/lfm_with_lfm1b_allmusic_tags/elliot_data` add `train_child_2011`, `validation_child_2011`, and `test_child_2011` to `Experiment_2/elliot/data/lfm_child_2011` as `train.tsv`, `validation.tsv`, and `test.tsv`, respectively.
-2. From `processed/lfm_with_lfm1b_allmusic_tags/elliot_data` add `train_2011`, `validation_2011`, and `test_2011` to `Experiment_2/elliot/data/lfm_2011` as `train.tsv`, `validation.tsv`, and `test.tsv`, respectively.
+1. From `processed/lfm_with_lfm1b_allmusic_tags/elliot_data` add `train_child_filtered_2012`, `validation_child_filtered_2012`, and `test_child_filtered_2012` to `Experiment_2/elliot/data/lfm_child_2012` as `train.tsv`, `validation.tsv`, and `test.tsv`, respectively.
+2. From `processed/lfm_with_lfm1b_allmusic_tags/elliot_data` add `train_filtered_2012`, `validation_filtered_2012`, and `test_filtered_2012` to `Experiment_2/elliot/data/lfm_2011` as `train.tsv`, `validation.tsv`, and `test.tsv`, respectively.
 
 Finally, add the config_files (`Experiment_2/config_files`) to `Experiment_2/elliot/config_files`
 
 
 ### Step3: Running Experiments using Elliot
+Run experiments with Elliot for the full set and for children only.
+```
+python start-experiments.py --config child_config
+```
+```
+python start-experiments.py --config all_user_config
+```
+
+
+### Step 4: Post-Process the Results
+- Move the best performing models on the validation set to `Experiment_2/Results`
+- Run `Experiment_2/Result_Analysis/Process_Results.py` in order to compute the User Genre Profiles and Recommendation Genre Profiles.
+
+
+### Step 5: Evaluate the Results of the Experiments
+- Run `Experiment_2/Results_Analysis/Performance_Analysis.py` in order to compute the performance for users of different age groups.

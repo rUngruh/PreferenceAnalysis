@@ -7,14 +7,15 @@ import argparse
 parser = argparse.ArgumentParser(description='Filter events by year and save.')
 parser.add_argument('--dataset', type=str, help='Dataset to use (ml or lfm)', choices=['ml', 'lfm'], default='lfm')
 parser.add_argument('--chunksize', type=int, default=1000000, help='Chunk size for processing listening events')
-parser.add_argument('--year', type=int, help='Selecting the year for the recommender experiment', default=2012)
+parser.add_argument('--start_date', type=str, help='Start date for the split', default='2012-10-31')
+parser.add_argument('--end_date', type=str, help='End date for the split', default='2013-10-31')
 
 args = parser.parse_args()
 
 # Use the dataset argument
 dataset = args.dataset
 chunksize = args.chunksize
-year = args.year
+
 
 dataset_dir = os.getenv("dataset_directory")
 ml_data_dir = dataset_dir + '/processed/ml_with_age'
@@ -25,8 +26,10 @@ save_dir = dataset_dir + '/processed/lfm_with_lfm1b_allmusic_tags/elliot_data'
 if not os.path.exists(save_dir):
     os.makedirs(save_dir)
 
-start_time = pd.to_datetime(f'{str(year)}-10-31 00:00:00')
-end_time = pd.to_datetime(f'{str(year + 1)}-10-31 00:00:00')
+start_time = args.start_date.to_datetime()
+end_time = args.end_date.to_datetime()
+
+year = start_time.year
 
 if dataset == 'ml':
     ratings_path = ml_data_dir + '/ratings.csv'

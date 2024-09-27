@@ -1,10 +1,10 @@
 experiment:
-  dataset: movielens_1m
+  dataset: lfm_child_filtered_2013_temporal_split
   data_config:
     strategy: fixed
-    train_path: ../data/lfm_child_2012/train.tsv
-    test_path: ../data/lfm_child_2012/test.tsv
-    validation_path: ../data/lfm_child_2012/validation.tsv
+    train_path: ../data/lfm_child_2013/train.tsv
+    test_path: ../data/lfm_child_2013/test.tsv
+    validation_path: ../data/lfm_child_2013/validation.tsv
   # prefiltering:
   #   - strategy: global_threshold
   #     threshold: 4
@@ -13,11 +13,11 @@ experiment:
   binarize: True
   top_k: 200
   evaluation:
-    cutoffs: [5, 10]
+    cutoffs: [50]
     simple_metrics: [nDCG, Recall, MAP, MRR,ItemCoverage,Gini]
   gpu: 2
-  path_output_rec_result: ../results/lfm_child_2012/recommendations
-  path_output_rec_performance: ../results/lfm_child_2012/performance
+  path_output_rec_result: ../results/lfm_child_2013/recommendations
+  path_output_rec_performance: ../results/lfm_child_2013/performance
   external_models_path: ../external/models/__init__.py
   models:
     Random:
@@ -27,22 +27,26 @@ experiment:
       meta:
         verbose: True
         save_recs: True
-    UserKNN: 
+    RP3beta: 
       meta:
-        hyper_max_evals: 20
-        hyper_opt_alg: tpe
-        save_recs: True
-        verbose: True
-      neighbors: [ uniform, 5, 1000 ]
-      similarity: [cosine, jaccard]
-    MF2020: 
-      meta:
-        hyper_max_evals: 20
+        hyper_max_evals: 10
         hyper_opt_alg: tpe
         verbose: True
         save_recs: True
-      epochs: [quniform, 30, 100, 1]
-      factors: [8, 16, 32, 64, 128, 256]
-      lr: [loguniform, -11.512925464970229, 0]
-      reg: [loguniform, -11.512925464970229, -2.30258509299]
-      m: [4,6,8]
+      neighborhood: [quniform, 5, 1000, 1]
+      alpha: [uniform, 0, 2]
+      beta: [uniform, 0, 2]
+      normalize_similarity: [True, False]
+    iALS: 
+      meta:
+        hyper_max_evals: 10
+        hyper_opt_alg: tpe
+        verbose: True
+        save_recs: True
+        validation_rate: 10
+      epochs: [uniform, 1, 250]
+      scaling: [linear, log]
+      factors: [quniform, 1, 200, 1]
+      alpha: [uniform, 10e-4, 50]
+      epsilon: [uniform, 10e-4, 10]
+      reg: [uniform, 10e-4, 10e-3]

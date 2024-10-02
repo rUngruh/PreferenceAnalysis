@@ -1,4 +1,5 @@
-# Homogenization by Recommender Systems and Its Long-term Effects on Children
+# The Impact of Mainstream-Driven Algorithms on Recommendations For Children
+This repository contains the code to reproduce the experiments from the paper: **The Impact of Mainstream-Driven Algorithms on Recommendations For Children**, submitted to [ECIR 2025](https://ecir2025.eu/).
 
 ## Complementary Figures
 In the directory ```Results``, the Figures from the manuscript can be found for further inspection in addition to supplementary Figures.

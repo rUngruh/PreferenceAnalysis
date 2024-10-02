@@ -1,5 +1,8 @@
 # Homogenization by Recommender Systems and Its Long-term Effects on Children
 
+## Complementary Figures
+In the directory ```Results``, the Figures from the manuscript can be found for further inspection in addition to supplementary Figures.
+
 ## Datasets
 Create a directory in which you save [LFM-2b](https://www.cp.jku.at/datasets/LFM-2b/), [LFM-1b](https://www.cp.jku.at/datasets/LFM-1b/), and [MovieLens-1m](https://grouplens.org/datasets/movielens/).
 

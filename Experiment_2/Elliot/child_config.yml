@@ -1,4 +1,5 @@
 experiment:
+  backend: tensorflow
   dataset: lfm_child_filtered_2013_temporal_split
   data_config:
     strategy: fixed
@@ -33,6 +34,7 @@ experiment:
         hyper_opt_alg: tpe
         verbose: True
         save_recs: True
+        validation_metric: nDCG@10
       neighborhood: [quniform, 5, 1000, 1]
       alpha: [uniform, 0, 2]
       beta: [uniform, 0, 2]
@@ -44,6 +46,7 @@ experiment:
         verbose: True
         save_recs: True
         validation_rate: 10
+        validation_metric: nDCG@10
       epochs: [uniform, 1, 250]
       scaling: [linear, log]
       factors: [quniform, 1, 200, 1]

@@ -1,8 +1,17 @@
 # The Impact of Mainstream-Driven Algorithms on Recommendations For Children
-This repository contains the code to reproduce the experiments from the paper: **The Impact of Mainstream-Driven Algorithms on Recommendations For Children**, submitted to [ECIR 2025](https://ecir2025.eu/).
+This repository contains the code to reproduce the experiments from the paper: **"The Impact of Mainstream-Driven Algorithms on Recommendations For Children"** by Robin Ungruh, Alejandro Bellogín, and Maria Soledad Pera, accepted as a full paper at [ECIR 2025](https://ecir2025.eu/).
+
+## Abstract
+ Recommendation algorithms are often trained using data sources reflecting the interactions of a broad user base. As a result, the dominant preferences of the majority may overshadow those of other groups with unique ineterests. This is something performance analyses of recommendation algorithms typically fail to capture, prompting us to investigate how well recommendations align with preferences of the overall population but also specifically a “non-mainstream” user group: children—an audience frequently exposed to recommender systems but rarely prioritized. Using music and movie datasets, we examine the differences in genre preferences between Children and Mainstream Users. We then explore the degree to which (genre) consumption patterns of a mainstream group impact the recommendations classical algorithms offer children. Our findings highlight prominent differences in consumption patterns between Children and Mainstream Users; they also reflect that children’s recommendations are impacted by the preference of user groups with deviating consumption habits. Surprisingly, despite being under-represented, children do not necessarily receive poorer recommendations. Further, our results demonstrate that tailoring training specifically to children does not always enhance personalization for them. These findings prompt reflections and discussion on how recommender systems can better meet the needs of understudied user groups.
+
+
+## Citation
+Robin Ungruh, Alejandro Bellogín, and Maria Soledad Pera. 2025. The Impact of Mainstream-Driven Algorithms on Recommendations For Children. In _European Conference on Information Retrieval_  
+
+# Reproducibility Code
 
 ## Complementary Figures
-In the directory ```Results``, the Figures from the manuscript can be found for further inspection in addition to supplementary Figures.
+In the directory ``Results``, the Figures from the manuscript can be found for further inspection in addition to supplementary Figures.
 
 ## Datasets
 Create a directory in which you save [LFM-2b](https://www.cp.jku.at/datasets/LFM-2b/), [LFM-1b](https://www.cp.jku.at/datasets/LFM-1b/), and [MovieLens-1m](https://grouplens.org/datasets/movielens/).

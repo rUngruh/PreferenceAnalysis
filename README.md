@@ -6,7 +6,7 @@ This repository contains the code to reproduce the experiments from the paper: *
 
 
 ## Citation
-Robin Ungruh, Alejandro Bellogín, and Maria Soledad Pera. 2025. The Impact of Mainstream-Driven Algorithms on Recommendations For Children. In _European Conference on Information Retrieval_  
+Robin Ungruh, Alejandro Bellogín, and Maria Soledad Pera. 2025. The Impact of Mainstream-Driven Algorithms on Recommendations For Children. In _European Conference on Information Retrieval_.
 
 # Reproducibility Code
 
